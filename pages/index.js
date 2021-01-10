@@ -1,6 +1,8 @@
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
 
 export default function Home() {
+  console.log('hi');
   return (
     <div className="container">
       <Head>
@@ -205,5 +207,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
