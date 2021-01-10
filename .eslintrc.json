@@ -2,11 +2,12 @@
   "env": {
     "browser": true,
     "es2021": true
-    // "cypress/globals": true
   },
   "globals": {
     "require": true,
-    "module": true
+    "module": true,
+    "es6": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
@@ -51,14 +52,6 @@
     "no-unused-vars": "off",
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "padded-blocks": [
-      "error",
-      {
-        "blocks": "never",
-        "switches": "never",
-        "classes": "never"
-      }
-    ],
     "object-curly-spacing": ["error", "always"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -71,14 +64,23 @@
         "beforeClosing": "never"
       }
     ],
-    "jsx-a11y/anchor-is-valid": "off",
-    // "ignorePatterns": ["out/**", "storybook-static/**"],
+    "ignorePatterns": [0, "storybook-static/**"],
     "comma-dangle": ["off", "never"],
+    "jsx-a11y/alt-text": 2,
+    "jsx-a11y/aria-props": 2,
     "jsx-a11y/mouse-events-have-key-events": 2,
     "jsx-a11y/no-autofocus": 2,
+    "jsx-a11y/html-has-lang": 2,
     "jsx-a11y/role-has-required-aria-props": 2,
     "jsx-a11y/role-supports-aria-props": 2,
-    "consistent-return": 0,
-    "no-console": "warn"
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      { "controlComponents": ["Input"] }
+    ],
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
+    "no-console": 1,
+    "prettier/prettier": 2,
+    "react/jsx-props-no-spreading": 2
   }
 }
