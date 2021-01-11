@@ -80,7 +80,6 @@
     ],
     "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
     "no-console": 1,
-    "prettier/prettier": 2,
-    "react/jsx-props-no-spreading": 2
+    "prettier/prettier": 2
   }
 }
