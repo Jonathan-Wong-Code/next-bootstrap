@@ -5,8 +5,9 @@ module.exports = {
     'src/components/**/*.{js,jsx,ts,tsx}',
     'src/containers/**/*.{js,jsx,tsx,ts}',
     'pages/**/*.{jsx,jsx}',
-    '!src/**/*.test.{js,jsx}',
-    '!src/**/*.mock.{js,jsx}',
+    '!src/**/*.test.{js,jsx,ts,tsx}',
+    '!src/**/*.mock.{js,jsx,ts,tsx}',
+    '!src/**/*.stories.{js,jsx,ts,tsx}',
   ],
 
   coverageThreshold: {
