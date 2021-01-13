@@ -21,7 +21,11 @@ export const Component = ({
 }: IComponent): JSX.Element => {
   return (
     <>
-      <Div backgroundColor={backgroundColor} color={color}>
+      <Div
+        backgroundColor={backgroundColor}
+        color={color}
+        data-testid="component"
+      >
         {name}
       </Div>
       <button onClick={onClick}>Click me</button>

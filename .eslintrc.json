@@ -1,13 +1,13 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "es6": true,
+    "jest": true
   },
   "globals": {
     "require": true,
-    "module": true,
-    "es6": true,
-    "jest": true
+    "module": true
   },
   "extends": [
     "eslint:recommended",
