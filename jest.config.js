@@ -29,8 +29,13 @@ module.exports = {
   },
   transform: {
     // transform files with ts-jest
-    '^.+\\.(js|ts)$': 'ts-jest',
+    '^.+\\.(js|ts|tsx|jsx)$': 'ts-jest',
   },
   setupFilesAfterEnv: ['./setupTests.js'], // run this file before tests run.
   testMatch: ['**/?(*.)+(test).+(ts|tsx|js)'],
+  globals: {
+    'ts-jest': {
+      tsconfig: './tsconfig.jest.json',
+    },
+  },
 };
