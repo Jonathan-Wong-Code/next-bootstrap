@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
 
 const Div = styled.div<{ backgroundColor: string; color: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -28,6 +29,7 @@ export const Component = ({
       >
         {name}
       </Div>
+      <FormattedMessage id="hello" />
       <button onClick={onClick}>Click me</button>
     </>
   );
