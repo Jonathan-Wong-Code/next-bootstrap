@@ -1,37 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
+import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
-
+import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
+import { redirect } from 'next/dist/next-server/server/api-utils';
 /* eslint-disable @typescript-eslint/no-explicit-any*/
 function returnValue(obj: any, key: string) {
   return obj[key];
 }
 
 export async function getServerSideProps(context) {
-  const headers = context.req.headers;
-  const locales = returnValue(headers, 'accept-language').split(';');
-
-  const parsedLocales = locales.map((locale, index) => {
-    if (index === 0) return locale.split(',')[0];
-    return locale.split(',')[1];
-  });
-
-  parsedLocales.pop();
-
-  if (context.locale !== parsedLocales[0]) {
-    context.res.setHeader(
-      'location',
-      `${parsedLocales[0]}${context.resolvedUrl}`
-    );
-    context.res.statusCode = 302;
-    context.res.end();
-  }
+  redirectLocaleUrl(context);
 
   return {
-    props: {
-      context: 'Some value',
-    },
+    props: {},
   };
 }
 
@@ -41,6 +24,10 @@ export default function Home(): JSX.Element {
   const { formatMessage } = useIntl();
 
   const greeting = formatMessage({ id: 'hello' });
+
+  const setLocale = (locale: string | undefined) => {
+    cookie.set('modernaLocale', locale, { expires: 1 / 24 });
+  };
 
   return (
     <>
@@ -56,6 +43,11 @@ export default function Home(): JSX.Element {
           </li>
         ))}
       </ul>
+
+      <button onClick={() => setLocale('en-US')}>Set USA</button>
+      <button onClick={() => setLocale('en-CA')}>Set Canadian</button>
+      <button onClick={() => setLocale('fr-CA')}>Set French</button>
+      <button onClick={() => setLocale('')}>Reset</button>
     </>
   );
 }

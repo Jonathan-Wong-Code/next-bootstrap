@@ -2,6 +2,8 @@ import React from 'react';
 
 import { AppProps } from 'next/app';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
+// import { RouteListener } from '../src/components/RouteListener/RouteListener';
+
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <AppProviders>
