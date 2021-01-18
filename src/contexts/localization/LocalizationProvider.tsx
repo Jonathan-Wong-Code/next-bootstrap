@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 export const supportedLocales = ['en-CA', 'fr-CA', 'en-US'] as const;
 export type SupportedLocale = typeof supportedLocales[number];
-
 interface ILocalizationProvider {
   children: React.ReactNode;
 }
