@@ -2,12 +2,13 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
-import { useIntl } from 'react-intl';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
-
+import { LocalizationExamplePage } from '../src/pages/localizationExample';
 interface IServerSideProps {
   // Would replace this with actual props return.
-  props: unknown;
+  props: {
+    someApiValue: string;
+  };
 }
 
 // Setting type to UNKNOWN for now.
@@ -17,15 +18,18 @@ export async function getServerSideProps(
   redirectLocaleUrl(context);
 
   return {
-    props: {},
+    props: {
+      someApiValue: 'hello i am data',
+    },
   };
 }
 
-export default function Example(): JSX.Element {
-  const { locale: currentLocale, pathname } = useRouter();
-  const { formatMessage } = useIntl();
+interface IExample {
+  someApiValue: string;
+}
 
-  const greeting = formatMessage({ id: 'hello' });
+export default function Example({ someApiValue }: IExample): JSX.Element {
+  const { locale: currentLocale, pathname } = useRouter();
 
   const setLocale = (locale: string | undefined) => {
     cookie.set('modernaLocale', locale, { expires: 1 / 24 });
@@ -33,15 +37,10 @@ export default function Example(): JSX.Element {
   };
 
   return (
-    <>
-      <h2>
-        TEST {greeting} current locale is: {currentLocale}
-      </h2>
-
-      <button onClick={() => setLocale('en-US')}>Set USA</button>
-      <button onClick={() => setLocale('en-CA')}>Set Canadian</button>
-      <button onClick={() => setLocale('fr-CA')}>Set French</button>
-      <button onClick={() => setLocale('')}>Reset</button>
-    </>
+    <LocalizationExamplePage
+      setLocale={setLocale}
+      currentLocale={currentLocale}
+      apiData={someApiValue}
+    />
   );
 }

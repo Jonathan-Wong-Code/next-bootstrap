@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Component, IComponent } from './Component';
+import { Component, IComponent } from '.';
 import { action } from '@storybook/addon-actions';
 
 export default {
