@@ -1,12 +1,19 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Component } from './Component';
+import { renderBaseProviders } from '../../test-helpers/testUtils';
+
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    locale: 'en-CA',
+  }),
+}));
 
 const onClick = jest.fn();
 
 it('renders', () => {
-  render(
+  renderBaseProviders(
     <Component
       onClick={onClick}
       name="jon"
