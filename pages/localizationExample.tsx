@@ -1,6 +1,5 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
@@ -23,8 +22,7 @@ export async function getServerSideProps(
 }
 
 export default function Example(): JSX.Element {
-  const { locale: currentLocale, locales, pathname } = useRouter();
-
+  const { locale: currentLocale, pathname } = useRouter();
   const { formatMessage } = useIntl();
 
   const greeting = formatMessage({ id: 'hello' });
@@ -39,15 +37,6 @@ export default function Example(): JSX.Element {
       <h2>
         TEST {greeting} current locale is: {currentLocale}
       </h2>
-      <ul>
-        {locales.map((locale) => (
-          <li key={locale}>
-            <Link href="/" locale={locale}>
-              <a>{locale}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
 
       <button onClick={() => setLocale('en-US')}>Set USA</button>
       <button onClick={() => setLocale('en-CA')}>Set Canadian</button>
