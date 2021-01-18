@@ -20,6 +20,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-intl": "^5.10.16",
+    "react-query": "^3.5.16",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
