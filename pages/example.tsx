@@ -1,11 +1,20 @@
 import React from 'react';
+import { GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useIntl } from 'react-intl';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 
-export async function getServerSideProps(context) {
+interface IServerSideProps {
+  // Would replace this with actual props return.
+  props: unknown;
+}
+
+// Setting type to UNKNOWN for now.
+export async function getServerSideProps(
+  context: GetServerSidePropsContext
+): Promise<IServerSideProps> {
   redirectLocaleUrl(context);
 
   return {

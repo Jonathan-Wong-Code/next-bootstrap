@@ -1,8 +1,10 @@
-function returnValue(obj: any, key: string) {
+import { GetServerSidePropsContext } from 'next';
+
+function returnValue(obj: unknown, key: string) {
   return obj[key];
 }
 
-export const redirectLocaleUrl = (context) => {
+export const redirectLocaleUrl = (context: GetServerSidePropsContext): void => {
   const preferredLocale = context.req.cookies.modernaLocale;
 
   const headers = context.req.headers;
