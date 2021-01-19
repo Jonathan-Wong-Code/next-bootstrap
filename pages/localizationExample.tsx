@@ -7,7 +7,7 @@ import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 interface IServerSideProps {
   // Would replace this with actual props return.
   props: {
@@ -17,12 +17,12 @@ interface IServerSideProps {
 
 const getPokemon = () =>
   axios
-    .get('https://pokeapi.co/api/v2/pokemon/1')
+    .get('https://pokeapi.co/api/v2/pokemon/fewf1')
     .then((res) => {
       return res.data;
     })
     .catch((e) => {
-      return Promise.reject(e.response.data);
+      return Promise.reject(e.response);
     });
 
 // Setting type to UNKNOWN for now.
@@ -46,7 +46,11 @@ export async function getServerSideProps(
 }
 
 export default function Example(): JSX.Element {
-  const { data, isLoading, error, isError } = useQuery('pokemon', getPokemon);
+  const { data, isLoading } = useQuery('pokemon', getPokemon, {
+    onError: (e: AxiosError) => {
+      throw new Error(JSON.stringify(e, null, 1));
+    },
+  });
   const { locale: currentLocale, pathname } = useRouter();
 
   const setLocale = (locale: string | undefined) => {
@@ -55,7 +59,6 @@ export default function Example(): JSX.Element {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>{error}</div>;
 
   return (
     <LocalizationExamplePage
