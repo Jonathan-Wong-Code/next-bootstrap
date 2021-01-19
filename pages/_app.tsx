@@ -1,14 +1,25 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
+import { Hydrate } from 'react-query/hydration';
 import { AppProps } from 'next/app';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
-// import { RouteListener } from '../src/components/RouteListener/RouteListener';
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
-    <AppProviders>
-      <Component {...pageProps} />
-    </AppProviders>
+    <>
+      <AppProviders>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <Component {...pageProps} />
+          </Hydrate>
+          <ReactQueryDevtools />
+        </QueryClientProvider>
+      </AppProviders>
+    </>
   );
 }
 

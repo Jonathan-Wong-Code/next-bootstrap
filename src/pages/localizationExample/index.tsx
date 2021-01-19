@@ -3,14 +3,14 @@ import { useIntl } from 'react-intl';
 
 export interface ILocalizationPage {
   setLocale: (locale: string | undefined) => void;
-  apiData: string;
   currentLocale: string;
+  pokemonName: string;
 }
 
 export const LocalizationExamplePage = ({
   setLocale,
-  apiData,
   currentLocale,
+  pokemonName,
 }: ILocalizationPage): JSX.Element => {
   const { formatMessage } = useIntl();
 
@@ -22,7 +22,7 @@ export const LocalizationExamplePage = ({
         TEST {greeting} current locale is: {currentLocale}
       </h2>
 
-      <p>Mock data from api: {apiData}</p>
+      <p>Data from api: {pokemonName}</p>
 
       <button onClick={() => setLocale('en-US')}>Set USA</button>
       <button onClick={() => setLocale('en-CA')}>Set Canadian</button>

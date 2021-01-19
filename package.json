@@ -12,9 +12,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-controls": "^6.1.11",
-    "@storybook/addon-essentials": "^6.1.11",
+    "axios": "^0.21.1",
     "js-cookie": "^2.2.1",
     "next": "10.0.5",
     "react": "17.0.1",
@@ -30,7 +28,10 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@storybook/addon-a11y": "^6.1.11",
+    "@storybook/addon-actions": "^6.1.14",
+    "@storybook/addon-controls": "^6.1.14",
     "@storybook/addon-docs": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.14",
     "@storybook/addon-links": "^6.1.11",
     "@storybook/react": "^6.1.11",
     "@testing-library/jest-dom": "^5.11.9",
