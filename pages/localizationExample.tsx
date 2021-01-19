@@ -11,13 +11,19 @@ import axios from 'axios';
 interface IServerSideProps {
   // Would replace this with actual props return.
   props: {
-    someApiValue: string;
     dehydratedState: unknown;
   };
 }
 
 const getPokemon = () =>
-  axios.get('https://pokeapi.co/api/v2/pokemon/1').then((res) => res.data);
+  axios
+    .get('https://pokeapi.co/api/v2/pokemon/1')
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      return Promise.reject(e.response.data);
+    });
 
 // Setting type to UNKNOWN for now.
 export async function getServerSideProps(
@@ -34,20 +40,22 @@ export async function getServerSideProps(
 
   return {
     props: {
-      someApiValue: 'hello i am data',
-      dehydratedState: dehydrate(queryClient), // MUST CALL THIS DEHYDRATED STATE
+      dehydratedState: dehydrate(queryClient) || null, // MUST CALL THIS DEHYDRATED STATE
     },
   };
 }
 
 export default function Example(): JSX.Element {
-  const { data } = useQuery('pokemon', getPokemon);
+  const { data, isLoading, error, isError } = useQuery('pokemon', getPokemon);
   const { locale: currentLocale, pathname } = useRouter();
 
   const setLocale = (locale: string | undefined) => {
     cookie.set('modernaLocale', locale, { expires: 1 / 24 });
     window.location.href = `/${locale}${pathname}`;
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>{error}</div>;
 
   return (
     <LocalizationExamplePage
