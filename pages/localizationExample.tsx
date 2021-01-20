@@ -8,17 +8,18 @@ import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
 import axios from 'axios';
-interface IServerSideProps {
-  props: {
-    dehydratedState: unknown;
-  };
-}
 
 const getPokemon = () =>
   axios
     .get('https://pokeapi.co/api/v2/pokemon/1')
     .then((res) => res.data)
     .catch((e) => Promise.reject(e));
+
+interface IServerSideProps {
+  props: {
+    dehydratedState: unknown;
+  };
+}
 
 // Setting type to UNKNOWN for now.
 export async function getServerSideProps(
