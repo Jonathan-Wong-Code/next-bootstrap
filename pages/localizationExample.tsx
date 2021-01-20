@@ -2,21 +2,23 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-import { useErrorHandler } from 'react-error-boundary';
+// import { useErrorHandler } from 'react-error-boundary';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
-import { apiClient } from '../src/utils/api-client';
+import axios from 'axios';
 interface IServerSideProps {
-  // Would replace this with actual props return.
   props: {
     dehydratedState: unknown;
   };
 }
 
 const getPokemon = () =>
-  apiClient({ url: 'https://pokeapi.co/api/v2/pokemon/1' });
+  axios
+    .get('https://pokeapi.co/api/v2/pokemon/1')
+    .then((res) => res.data)
+    .catch((e) => Promise.reject(e));
 
 // Setting type to UNKNOWN for now.
 export async function getServerSideProps(
@@ -26,10 +28,7 @@ export async function getServerSideProps(
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: 'pokemon',
-    queryFn: getPokemon,
-  });
+  await queryClient.prefetchQuery('pokemon', getPokemon);
 
   return {
     props: {
@@ -39,10 +38,9 @@ export async function getServerSideProps(
 }
 
 export default function Example(): JSX.Element {
-  const { data, isLoading, error } = useQuery('pokemon', getPokemon);
+  const { data, isLoading, error, isError } = useQuery('pokemon', getPokemon);
   const { locale: currentLocale, pathname } = useRouter();
-
-  useErrorHandler(error);
+  // useErrorHandler(error);
 
   const setLocale = (locale: string | undefined) => {
     cookie.set('modernaLocale', locale, { expires: 1 / 24 });
@@ -50,12 +48,15 @@ export default function Example(): JSX.Element {
   };
 
   if (isLoading) return <div>Loading...</div>;
+  if (isError) throw new Error(JSON.stringify(error, null, 2));
 
   return (
-    <LocalizationExamplePage
-      setLocale={setLocale}
-      currentLocale={currentLocale}
-      pokemonName={data.name}
-    />
+    <>
+      <LocalizationExamplePage
+        setLocale={setLocale}
+        currentLocale={currentLocale}
+        pokemonName={data.name}
+      />
+    </>
   );
 }

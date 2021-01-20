@@ -11,7 +11,7 @@ export async function apiClient({
 }: AxiosRequestConfig & { token?: string }): Promise<any> {
   const config: AxiosRequestConfig = {
     url,
-    method,
+    method: method ? method : 'GET',
     data,
     headers: {
       Authorization: token ? `Bearer ${token}` : undefined,

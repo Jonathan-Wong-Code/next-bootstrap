@@ -5,6 +5,9 @@ import { FormattedMessage } from 'react-intl';
 const Div = styled.div<{ backgroundColor: string; color: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ color }) => color};
+
+  // This is how we should be using the theme as a prop in styled-components
+  border: 1px ${({ theme }) => theme.colors.primary} solid;
 `;
 
 export interface IComponent {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-
+import { H2 } from './css';
 export interface ILocalizationPage {
   setLocale: (locale: string | undefined) => void;
   currentLocale: string;
@@ -18,9 +18,9 @@ export const LocalizationExamplePage = ({
 
   return (
     <>
-      <h2>
+      <H2>
         TEST {greeting} current locale is: {currentLocale}
-      </h2>
+      </H2>
 
       <p>Data from api: {pokemonName}</p>
 
