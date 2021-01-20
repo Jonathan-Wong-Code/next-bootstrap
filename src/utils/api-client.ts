@@ -1,16 +1,14 @@
 import axios from 'axios';
 import { AxiosRequestConfig } from 'axios';
 
-export async function client(
-  url: string,
-  {
-    method,
-    data,
-    token,
-    headers: customHeaders,
-    ...customConfig
-  }: AxiosRequestConfig & { token: string }
-): Promise<unknown> {
+export async function apiClient({
+  url,
+  method,
+  data,
+  token,
+  headers: customHeaders,
+  ...customConfig
+}: AxiosRequestConfig & { token?: string }): Promise<any> {
   const config: AxiosRequestConfig = {
     url,
     method,
@@ -24,8 +22,6 @@ export async function client(
   };
 
   return axios(config)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((error) => error.response.data);
+    .then((res) => res.data)
+    .catch((error) => Promise.reject(error.response));
 }

@@ -7,7 +7,7 @@ import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
-import axios from 'axios';
+import { apiClient } from '../src/utils/api-client';
 interface IServerSideProps {
   // Would replace this with actual props return.
   props: {
@@ -16,14 +16,7 @@ interface IServerSideProps {
 }
 
 const getPokemon = () =>
-  axios
-    .get('https://pokeapi.co/api/v2/pokemon/fewf1')
-    .then((res) => {
-      return res.data;
-    })
-    .catch((e) => {
-      return Promise.reject(e.response);
-    });
+  apiClient({ url: 'https://pokeapi.co/api/v2/pokemon/1' });
 
 // Setting type to UNKNOWN for now.
 export async function getServerSideProps(
@@ -40,7 +33,7 @@ export async function getServerSideProps(
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient) || null, // MUST CALL THIS DEHYDRATED STATE
+      dehydratedState: dehydrate(queryClient), // MUST CALL THIS DEHYDRATED STATE
     },
   };
 }
