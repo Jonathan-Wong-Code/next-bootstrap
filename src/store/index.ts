@@ -9,7 +9,7 @@ export interface ReduxState {
 
 let store;
 
-const initialState = {
+export const initialState = {
   testState: '',
 };
 
@@ -21,7 +21,7 @@ function initStore(preloadedState = initialState) {
   );
 }
 
-export const initializeStore = (preloadedState: ReduxState): ReduxState => {
+export const initializeStore = (preloadedState: ReduxState) => {
   let _store = store ?? initStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state

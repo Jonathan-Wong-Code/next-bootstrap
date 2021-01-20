@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Localization Page renders the page successfully 1`] = `
+.c0 {
+  color: red;
+}
+
+<div>
+  <h2
+    class="c0"
+  >
+    TEST 
+    Hello there!
+     current locale is: 
+    en-CA
+  </h2>
+  <h3>
+    Current redux value is: 
+    Initial test state
+  </h3>
+  <p>
+    Data from api: 
+    Pikachu
+  </p>
+  <button>
+    Set USA
+  </button>
+  <button>
+    Set Canadian
+  </button>
+  <button>
+    Set French
+  </button>
+  <button>
+    Reset
+  </button>
+  <br />
+  <button>
+    Set a new Redux value!
+  </button>
+</div>
+`;

@@ -4,12 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { Component } from '.';
 import { renderBaseProviders } from '../../test-helpers/testUtils';
 
-jest.mock('next/router', () => ({
-  useRouter: () => ({
-    locale: 'en-CA',
-  }),
-}));
-
 const onClick = jest.fn();
 
 it('renders', () => {
