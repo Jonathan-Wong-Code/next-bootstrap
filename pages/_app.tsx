@@ -4,27 +4,22 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Hydrate } from 'react-query/hydration';
 import { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
 import { GlobalStyle } from '../src/theme/Globals';
-import { defaultTheme } from '../src//theme/themes';
-// import { ErrorBoundary } from 'react-error-boundary';
-// import { ErrorPage } from '../src/pages/errorPage';
+import { useStore } from '../src/store/index';
 
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  const store = useStore(pageProps.initialReduxState);
+
   return (
     <>
-      <AppProviders>
+      <AppProviders store={store}>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            {/* <ErrorBoundary FallbackComponent={ErrorPage}> */}
-            <ThemeProvider theme={defaultTheme}>
-              <GlobalStyle />
-              <Component {...pageProps} />
-            </ThemeProvider>
-            {/* </ErrorBoundary> */}
+            <GlobalStyle />
+            <Component {...pageProps} />
           </Hydrate>
           <ReactQueryDevtools />
         </QueryClientProvider>

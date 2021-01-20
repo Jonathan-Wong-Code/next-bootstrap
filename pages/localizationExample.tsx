@@ -1,14 +1,15 @@
 import React from 'react';
+import axios from 'axios';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { GetServerSidePropsContext } from 'next';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-// import { useErrorHandler } from 'react-error-boundary';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
-import axios from 'axios';
-
+import { setStateAction } from '../src/actions/testActions';
 const getPokemon = () =>
   axios
     .get('https://pokeapi.co/api/v2/pokemon/1')
@@ -38,10 +39,18 @@ export async function getServerSideProps(
   };
 }
 
-export default function Example(): JSX.Element {
+// This is an example Container. Ideally all API calls/redux calls are made here and passed down to the Page Component.
+export default function ExampleContainer(): JSX.Element {
   const { data, isLoading, error, isError } = useQuery('pokemon', getPokemon);
   const { locale: currentLocale, pathname } = useRouter();
-  // useErrorHandler(error);
+
+  const dispatch = useDispatch();
+
+  const reduxValue = useSelector((s) => s.testState);
+  // This can be named onClick if being sent to a generic component.
+  const setNewState = (newState: string) => {
+    dispatch(setStateAction(newState));
+  };
 
   const setLocale = (locale: string | undefined) => {
     cookie.set('modernaLocale', locale, { expires: 1 / 24 });
@@ -57,6 +66,8 @@ export default function Example(): JSX.Element {
         setLocale={setLocale}
         currentLocale={currentLocale}
         pokemonName={data.name}
+        setNewState={setNewState}
+        currentReduxValue={reduxValue}
       />
     </>
   );

@@ -47,7 +47,7 @@
     ],
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "indent": ["error", 2],
+    "indent": "off",
     "linebreak-style": ["error", "unix"],
     "no-unused-vars": "off",
     "quotes": ["error", "single"],
