@@ -5,6 +5,8 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate } from 'react-query/hydration';
 import { AppProps } from 'next/app';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorPage } from '../src/pages/errorPage';
 
 const queryClient = new QueryClient();
 
@@ -14,7 +16,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <AppProviders>
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
-            <Component {...pageProps} />
+            <ErrorBoundary FallbackComponent={ErrorPage}>
+              <Component {...pageProps} />
+            </ErrorBoundary>
           </Hydrate>
           <ReactQueryDevtools />
         </QueryClientProvider>

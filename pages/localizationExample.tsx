@@ -2,12 +2,12 @@ import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-
+import { useErrorHandler } from 'react-error-boundary';
 import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 interface IServerSideProps {
   // Would replace this with actual props return.
   props: {
@@ -46,12 +46,10 @@ export async function getServerSideProps(
 }
 
 export default function Example(): JSX.Element {
-  const { data, isLoading } = useQuery('pokemon', getPokemon, {
-    onError: (e: AxiosError) => {
-      throw new Error(JSON.stringify(e, null, 1));
-    },
-  });
+  const { data, isLoading, error } = useQuery('pokemon', getPokemon);
   const { locale: currentLocale, pathname } = useRouter();
+
+  useErrorHandler(error);
 
   const setLocale = (locale: string | undefined) => {
     cookie.set('modernaLocale', locale, { expires: 1 / 24 });
