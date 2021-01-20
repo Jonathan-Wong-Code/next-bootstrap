@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { LocalizationExamplePage } from '../src/pages/localizationExample';
 import { setStateAction } from '../src/actions/testActions';
+import { selectTestState } from '../src/selectors/testState';
 const getPokemon = () =>
   axios
     .get('https://pokeapi.co/api/v2/pokemon/1')
@@ -46,7 +47,7 @@ export default function ExampleContainer(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const reduxValue = useSelector((s) => s.testState);
+  const reduxValue = useSelector(selectTestState);
   // This can be named onClick if being sent to a generic component.
   const setNewState = (newState: string) => {
     dispatch(setStateAction(newState));
