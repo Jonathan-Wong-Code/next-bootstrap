@@ -21,7 +21,7 @@ function initStore(preloadedState = initialState) {
   );
 }
 
-export const initializeStore = (preloadedState: ReduxState) => {
+export const initializeStore = (preloadedState: ReduxState): ReduxState => {
   let _store = store ?? initStore(preloadedState);
 
   // After navigating to a page with an initial Redux state, merge that state
