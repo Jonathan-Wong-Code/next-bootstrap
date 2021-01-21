@@ -11,7 +11,6 @@ import { defaultTheme } from '../../src/theme/themes';
 import { Provider } from 'react-redux';
 interface IRenderProps {
   children: React.ReactNode;
-  reduxState: ReduxState;
 }
 
 const renderWithAllProviders = ({ children }: IRenderProps): JSX.Element => {
@@ -39,6 +38,7 @@ export const renderBaseProviders = (
   options?: Omit<RenderOptions, 'queries'>
 ): RenderResult => render(ui, { wrapper: renderWithBaseProviders, ...options });
 
+// You can add more options to be passed to the render here as you need
 interface Options {
   reduxState: ReduxState;
 }

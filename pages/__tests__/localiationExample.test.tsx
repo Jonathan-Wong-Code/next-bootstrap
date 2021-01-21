@@ -4,6 +4,8 @@ import { renderAllProviders } from '../../src/test-helpers/testUtils';
 import axios from 'axios';
 import { waitForElementToBeRemoved, screen } from '@testing-library/react';
 
+// These page level tests will be for performing integration tests on the entire page.
+
 jest.mock('axios');
 
 const mockResponse = {
