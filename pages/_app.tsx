@@ -1,14 +1,11 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Hydrate } from 'react-query/hydration';
 import { AppProps } from 'next/app';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
 import { GlobalStyle } from '../src/theme/Globals';
-import { useStore } from '../src/store/index';
-
-const queryClient = new QueryClient();
+import { useStore } from '../src/redux/store';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const store = useStore(pageProps.initialReduxState);
@@ -16,13 +13,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <AppProviders store={store}>
-        <QueryClientProvider client={queryClient}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </Hydrate>
-          <ReactQueryDevtools />
-        </QueryClientProvider>
+        <Hydrate state={pageProps.dehydratedState}>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </Hydrate>
+        <ReactQueryDevtools />
       </AppProviders>
     </>
   );

@@ -2,12 +2,12 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { createStore } from 'redux';
-import { rootReducer } from '../reducers';
-import { initialState, ReduxState } from '../store';
+import { rootReducer } from '../redux/reducers';
+import { initialState, ReduxState } from '../redux/store';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
-import { LocalizationProvider } from '../contexts/localization/LocalizationProvider';
+import { LocalizationProvider } from '../i18n/LocalizationProvider';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../../src/theme/themes';
+import { defaultTheme } from '../theme/themes';
 import { Provider } from 'react-redux';
 interface IRenderProps {
   children: React.ReactNode;

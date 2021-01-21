@@ -1,9 +1,14 @@
 import React from 'react';
-import { LocalizationProvider } from '../localization/LocalizationProvider';
+import { LocalizationProvider } from '../../i18n/LocalizationProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { defaultTheme } from '../../theme/themes';
-import { ReduxState } from '../../store';
+import { ReduxState } from '../../redux/store';
+
+const queryClient = new QueryClient();
+
 interface IAppProviders {
   children: React.ReactNode;
   store: ReduxState;
@@ -13,9 +18,11 @@ export const AppProviders = ({
   children,
   store,
 }: IAppProviders): JSX.Element => (
-  <Provider store={store}>
-    <ThemeProvider theme={defaultTheme}>
-      <LocalizationProvider>{children}</LocalizationProvider>
-    </ThemeProvider>
-  </Provider>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <ThemeProvider theme={defaultTheme}>
+        <LocalizationProvider>{children}</LocalizationProvider>
+      </ThemeProvider>
+    </Provider>
+  </QueryClientProvider>
 );

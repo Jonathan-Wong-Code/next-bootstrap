@@ -1,4 +1,4 @@
-import { actionTypes } from './constants';
+import { actionTypes } from '../constants';
 
 interface ISetStateAction {
   type: actionTypes.SET_STATE;

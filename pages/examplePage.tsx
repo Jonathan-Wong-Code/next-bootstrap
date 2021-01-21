@@ -1,28 +1,21 @@
 import React from 'react';
 import { GetServerSidePropsContext } from 'next';
 
-import axios from 'axios';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-import { QueryClient, useQuery } from 'react-query';
+import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-
-import cookie from 'js-cookie';
 
 import { useRouter } from 'next/router';
 
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
-import { LocalizationExamplePage } from '../src/pages/localizationExample';
+import { ExamplePage } from '../src/pages/ExamplePage';
 
-import { setStateAction } from '../src/actions/testActions';
-import { selectTestState } from '../src/selectors/testState';
+import { setStateAction } from '../src/redux/actions/testActions';
+import { selectTestState } from '../src/redux/selectors/testState';
 
-const getPokemon = () =>
-  axios
-    .get('https://pokeapi.co/api/v2/pokemon/1')
-    .then((res) => res.data) // Return res.data for convenience.
-    .catch((e) => Promise.reject(e)); // Reject promise to send to react-query error.
+import { useFetchPokemon, getPokemon } from '../src/services/pokemon';
+import { useSetLocale } from '../src/hooks/useSetLocale';
 
 interface IServerSideProps {
   props: {
@@ -30,7 +23,6 @@ interface IServerSideProps {
   };
 }
 
-// Setting type to UNKNOWN for now.
 export async function getServerSideProps(
   context: GetServerSidePropsContext
 ): Promise<IServerSideProps> {
@@ -48,10 +40,10 @@ export async function getServerSideProps(
 }
 
 // This is an example Container. Ideally all API calls/redux calls are made here and passed down to the Page Component.
-export default function ExampleContainer(): JSX.Element {
-  const { data, isLoading, error, isError } = useQuery('pokemon', getPokemon);
-  const { locale: currentLocale, pathname } = useRouter();
-
+export default function ExamplePageContainer(): JSX.Element {
+  const { data, isLoading, error, isError } = useFetchPokemon();
+  const { locale: currentLocale } = useRouter();
+  const { setLocale } = useSetLocale();
   const dispatch = useDispatch();
 
   const reduxValue = useSelector(selectTestState);
@@ -60,11 +52,6 @@ export default function ExampleContainer(): JSX.Element {
   // Anything involving Redux should be in a container.
   const setNewState = (newState: string) => {
     dispatch(setStateAction(newState));
-  };
-
-  const setLocale = (locale: string | undefined) => {
-    cookie.set('modernaLocale', locale, { expires: 1 / 24 });
-    window.location.href = `/${locale}${pathname}`;
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -76,7 +63,7 @@ export default function ExampleContainer(): JSX.Element {
   // Component will be where all API Data/Context/Redux/business logic will be consumed.
   return (
     <>
-      <LocalizationExamplePage
+      <ExamplePage
         setLocale={setLocale}
         currentLocale={currentLocale}
         pokemonName={data.name}

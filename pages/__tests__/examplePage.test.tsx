@@ -1,5 +1,5 @@
 import React from 'react';
-import LocalizationPage from '../localizationExample';
+import LocalizationPage from '../examplePage';
 import { renderAllProviders } from '../../src/test-helpers/testUtils';
 import axios from 'axios';
 import { waitForElementToBeRemoved, screen } from '@testing-library/react';
@@ -31,6 +31,6 @@ describe('The Localization Page', () => {
     // wait for loading to end.
     await waitForElementToBeRemoved(screen.getByText(/loading/i));
     // This is just to show that everything works.
-    expect(container).toMatchSnapshot();
+    expect(container).toHaveTextContent(/initial test state/i);
   });
 });
