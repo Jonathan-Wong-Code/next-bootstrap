@@ -73,8 +73,6 @@ Copy the `.env.example` files:
 
 Modify any relevant environment variables.
 
-## Testing
-
 ### Unit tests
 
 Test Coverage for the Repo should ideally be at least 70%.

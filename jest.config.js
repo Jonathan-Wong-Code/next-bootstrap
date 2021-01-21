@@ -4,9 +4,10 @@ module.exports = {
   collectCoverageFrom: [
     'src/components/**/*.{js,jsx,ts,tsx}',
     'src/containers/**/*.{js,jsx,tsx,ts}',
-    '!src/**/*.test.{js,jsx,ts,tsx}',
-    '!src/**/*.mock.{js,jsx,ts,tsx}',
-    '!src/**/*.stories.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx,ts,tsx}',
+    '!**/*.test.{js,jsx,ts,tsx}',
+    '!**/*.mock.{js,jsx,ts,tsx}',
+    '!**/*.stories.{js,jsx,ts,tsx}',
   ],
 
   coverageThreshold: {
