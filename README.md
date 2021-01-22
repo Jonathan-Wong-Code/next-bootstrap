@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This project uses node 14.15.4.
 
-# Typescript
+## Typescript
 
 To enable prettier with typescript go to your IDE settings and add:
 
@@ -73,7 +73,7 @@ Copy the `.env.example` files:
 
 Modify any relevant environment variables.
 
-### Unit tests
+## Unit tests
 
 Test Coverage for the Repo should ideally be at least 70%.
 
@@ -119,7 +119,7 @@ All Components built should be themed using the theme colors/typescale/type-weig
 
 ## Folder Architecture and Purpose
 
-# Below is a list of folders with their intentions.
+### Below is a list of folders with their intentions.
 
 `./pages/` - This folder houses the pages. The name of the page file is linked to it's routing. For example `./pages/examplePage.tsx` is for the route `/examplePage`. These pages are intended to be used at container components where all API calls/redux dispatches + state selectors/smart logic should go.
 
