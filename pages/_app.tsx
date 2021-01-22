@@ -4,8 +4,8 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { Hydrate } from 'react-query/hydration';
 import { AppProps } from 'next/app';
 import { AppProviders } from '../src/contexts/AppProviders/AppProviders';
-import { GlobalStyle } from '../src/theme/Globals';
 import { useStore } from '../src/redux/store';
+import '../src/styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const store = useStore(pageProps.initialReduxState);
@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <>
       <AppProviders store={store}>
         <Hydrate state={pageProps.dehydratedState}>
-          <GlobalStyle />
           <Component {...pageProps} />
         </Hydrate>
         <ReactQueryDevtools />

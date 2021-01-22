@@ -7,7 +7,7 @@ import { initialState, ReduxState } from '../redux/store';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { LocalizationProvider } from '../i18n/LocalizationProvider';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme/themes';
+import { theme } from '../styles/themes';
 import { Provider } from 'react-redux';
 interface IRenderProps {
   children: React.ReactNode;
