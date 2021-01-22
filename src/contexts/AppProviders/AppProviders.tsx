@@ -7,7 +7,14 @@ import { Provider } from 'react-redux';
 import { theme } from '../../theme/themes';
 import { ReduxState } from '../../redux/store';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 2,
+    },
+  },
+});
 
 interface IAppProviders {
   children: React.ReactNode;
