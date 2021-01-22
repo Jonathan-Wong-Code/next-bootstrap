@@ -22,3 +22,7 @@ it('renders', () => {
   userEvent.click(screen.getByRole('button'));
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+
+it('renders default props', () => {
+  renderBaseProviders(<Component onClick={onClick} />);
+});

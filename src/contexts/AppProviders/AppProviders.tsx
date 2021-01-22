@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
-import { defaultTheme } from '../../theme/themes';
+import { theme } from '../../theme/themes';
 import { ReduxState } from '../../redux/store';
 
 const queryClient = new QueryClient();
@@ -20,7 +20,7 @@ export const AppProviders = ({
 }: IAppProviders): JSX.Element => (
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={theme}>
         <LocalizationProvider>{children}</LocalizationProvider>
       </ThemeProvider>
     </Provider>

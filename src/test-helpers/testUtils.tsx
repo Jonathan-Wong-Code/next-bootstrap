@@ -7,7 +7,7 @@ import { initialState, ReduxState } from '../redux/store';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { LocalizationProvider } from '../i18n/LocalizationProvider';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../theme/themes';
+import { theme } from '../theme/themes';
 import { Provider } from 'react-redux';
 interface IRenderProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ const renderWithAllProviders = ({ children }: IRenderProps): JSX.Element => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={theme}>
         <LocalizationProvider>{children}</LocalizationProvider>
       </ThemeProvider>
     </QueryClientProvider>
@@ -27,7 +27,7 @@ const renderWithAllProviders = ({ children }: IRenderProps): JSX.Element => {
 
 const renderWithBaseProviders = ({ children }: IRenderProps): JSX.Element => {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <LocalizationProvider>{children}</LocalizationProvider>
     </ThemeProvider>
   );

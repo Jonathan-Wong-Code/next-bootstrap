@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 1rem;
-    box-sizing: border-box;
   }
 
   *, *:before, *:after {

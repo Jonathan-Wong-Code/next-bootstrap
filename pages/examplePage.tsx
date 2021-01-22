@@ -4,9 +4,10 @@ import { GetServerSidePropsContext } from 'next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
+import { dehydrate, DehydratedState } from 'react-query/hydration';
 
 import { useRouter } from 'next/router';
+import { useSetLocale } from '../src/hooks/useSetLocale';
 
 import { redirectLocaleUrl } from '../src/utils/redirectLocaleUrl';
 import { ExamplePage } from '../src/pages/ExamplePage';
@@ -15,11 +16,10 @@ import { setStateAction } from '../src/redux/actions/testActions';
 import { selectTestState } from '../src/redux/selectors/testState';
 
 import { useFetchPokemon, getPokemon } from '../src/services/pokemon';
-import { useSetLocale } from '../src/hooks/useSetLocale';
 
 interface IServerSideProps {
   props: {
-    dehydratedState: unknown;
+    dehydratedState: DehydratedState;
   };
 }
 
@@ -45,7 +45,6 @@ export default function ExamplePageContainer(): JSX.Element {
   const { locale: currentLocale } = useRouter();
   const { setLocale } = useSetLocale();
   const dispatch = useDispatch();
-
   const reduxValue = useSelector(selectTestState);
 
   // This can be named onClick if being sent to a generic component.

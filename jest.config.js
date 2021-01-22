@@ -2,12 +2,15 @@ const COVERAGE = 70;
 
 module.exports = {
   collectCoverageFrom: [
+    '!src/components/ExampleComponent/index.tsx',
     'src/components/**/*.{js,jsx,ts,tsx}',
     'src/containers/**/*.{js,jsx,tsx,ts}',
-    './pages/**/*.{js,jsx,ts,tsx}',
+    'pages/**/*.{js,jsx,ts,tsx}',
     '!**/*.test.{js,jsx,ts,tsx}',
     '!**/*.mock.{js,jsx,ts,tsx}',
     '!**/*.stories.{js,jsx,ts,tsx}',
+    '!pages/examplePage.tsx',
+    '!pages/_app.tsx',
   ],
 
   coverageThreshold: {

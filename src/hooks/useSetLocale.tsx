@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 
 import cookie from 'js-cookie';
+
+// This is more for future reference/PoC for a routing.
 interface IUseSetLocale {
   setLocale: (locale: string) => void;
 }
