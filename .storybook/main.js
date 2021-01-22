@@ -12,18 +12,4 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-actions',
   ],
-  webpackFinal: async (config, { configType }) => {
-    if (configType !== 'PRODUCTION') {
-      return config;
-    }
-
-    return {
-      output: {
-        path: './__storybook',
-        filename: '/__storybook/[name].[hash].bundle.js',
-        publicPath: '/__storybook/',
-      },
-      ...config,
-    };
-  },
 };

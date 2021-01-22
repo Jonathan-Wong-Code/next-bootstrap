@@ -1,7 +1,8 @@
-import { LocalizationProvider } from '../src/contexts/localization/LocalizationProvider';
+import { LocalizationProvider } from '../src/i18n/LocalizationProvider';
 import { withNextRouter } from 'storybook-addon-next-router';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from '../src/theme/themes';
+import { theme } from '../src/styles/themes';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
 };
@@ -16,7 +17,7 @@ export const withIntl = (Story, context) => {
 
 export const withTheme = (Story, context) => {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Story {...context} />
     </ThemeProvider>
   );

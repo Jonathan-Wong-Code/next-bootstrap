@@ -9,7 +9,11 @@ export default {
 } as Meta;
 
 const Template: Story<IExamplePage> = (args) => (
-  <ExamplePage {...args} setLocale={action('setting locale')} />
+  <ExamplePage
+    {...args}
+    setLocale={action('setting locale')}
+    setNewState={action('setting new state')}
+  />
 );
 
 export const Default = Template.bind({});

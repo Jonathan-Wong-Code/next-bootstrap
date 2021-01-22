@@ -15,7 +15,6 @@ export function SectionTwo({
       <button onClick={() => setLocale('en-US')}>Set USA</button>
       <button onClick={() => setLocale('en-CA')}>Set Canadian</button>
       <button onClick={() => setLocale('fr-CA')}>Set French</button>
-      <button onClick={() => setLocale('')}>Reset</button>
       <br />
       <button onClick={() => setNewState('new state')}>
         Set a new Redux value!
