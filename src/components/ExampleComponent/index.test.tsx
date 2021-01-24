@@ -16,7 +16,7 @@ it('renders', () => {
     />
   );
 
-  const component = screen.getByTestId('component');
+  const component = screen.getByText('jon');
   expect(component).toHaveStyleRule('color', 'yellow');
   expect(component).toHaveTextContent(/jon/i);
   userEvent.click(screen.getByRole('button'));
