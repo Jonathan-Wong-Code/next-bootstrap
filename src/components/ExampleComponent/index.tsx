@@ -7,7 +7,7 @@ const Div = styled.div<{ backgroundColor: string; color: string }>`
   color: ${({ color }) => color};
 
   // This is how we should be using the theme as a prop in styled-components
-  border: 1px ${({ theme }) => theme.colors.primary} solid;
+  border: 1px ${({ theme }) => theme.colors.primaryColor} solid;
 `;
 
 export interface IComponent {

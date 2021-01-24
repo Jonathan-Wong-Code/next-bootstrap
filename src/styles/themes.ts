@@ -1,13 +1,14 @@
+import { ThemeInterface } from './styled.d';
+
 // The Moderna Theme will be imported from the Component Library.
-// TODO: Remove this placeholder when that happens.
-export const modernaTheme = {
+export const modernaTheme: ThemeInterface = {
   colors: {
     primaryColor: 'red',
   },
 };
 
 // Custom theme will be used to overwrite/add theme values that are not present on the imported theme.
-const customTheme = {
+const customTheme: ThemeInterface = {
   colors: {
     primaryColor: 'blue',
   },
