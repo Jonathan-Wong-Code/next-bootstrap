@@ -89,6 +89,28 @@ To view test coverage file
 
     open ./coverage/lcov-report/index.html
 
+### Testing Guildlines
+
+#### What to test?
+
+Generally we want to test our application/components that resemble how our user would use them.
+
+We're less concerned with testing that specific text appears/implementation details and more about behaviours.
+
+This can include user-actions like testing what happens when the user clicks a button, or enters some text into a form. It can also include things like conditional rendering. What happens if different props are passed to a component?
+
+For more information on this read: https://kentcdodds.com/blog/how-to-know-what-to-test
+
+and https://kentcdodds.com/blog/testing-implementation-details
+
+#### Which queries to use.
+
+getByTestId should be the last resort/escape-hatch for when none of the other queries that testing-library provides applies.
+
+Please read: https://testing-library.com/docs/queries/about/.
+
+For a sort of heirarchy of queries and when to use them.
+
 ## Integration tests
 
 Ideally we will build and maintain container level tests from the beginning as the application grows. See `./pages/__tests__/examplePage.test.tsx` for an example of testing containers with Redux/API Calls.
