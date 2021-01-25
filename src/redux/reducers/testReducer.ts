@@ -1,6 +1,6 @@
 // THIS IS FOR EXAMPLE ONLY
 import { TestActions } from '../actions/testActions';
-
+import { actionTypes } from '../constants';
 const initialState = '';
 
 export const testReducer = (
@@ -8,7 +8,7 @@ export const testReducer = (
   action: TestActions
 ): string => {
   switch (action.type) {
-    case 'SET_STATE': {
+    case actionTypes.SET_STATE: {
       return action.state;
     }
 

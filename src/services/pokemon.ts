@@ -11,6 +11,7 @@ export const getPokemon = (): Promise<useQueryReturnType> =>
     .then((res) => res.data) // Return res.data for convenience.
     .catch((e) => Promise.reject(e)); // Reject promise to send to react-query error.
 
+// Return API fetching hooks here. Will be useful when there's more complex logic for the options in queries/mutations
 export const useFetchPokemon = (): UseQueryResult<
   useQueryReturnType,
   Error

@@ -2,15 +2,22 @@ const COVERAGE = 70;
 
 module.exports = {
   collectCoverageFrom: [
-    '!src/components/ExampleComponent/index.tsx',
-    'src/components/**/*.{js,jsx,ts,tsx}',
-    'src/containers/**/*.{js,jsx,tsx,ts}',
-    'pages/**/*.{js,jsx,ts,tsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/contexts/**/*.{js,jsx,ts,tsx}',
+    '!src/i18n/**/*.{js,jsx,ts,tsx}',
+    '!src/redux/**/*.{js,jsx,ts,tsx}',
+    '!src/services/**/*.{js,jsx,ts,tsx}',
+    '!src/test-helpers/**/*.{js,jsx,ts,tsx}',
+    '!src/styles/**/*.{js,jsx,ts,tsx}',
     '!**/*.test.{js,jsx,ts,tsx}',
     '!**/*.mock.{js,jsx,ts,tsx}',
     '!**/*.stories.{js,jsx,ts,tsx}',
     '!pages/examplePage.tsx',
     '!pages/_app.tsx',
+    '!pages/_document.tsx',
+    '!src/components/ExampleComponent/index.tsx',
+    '!src/utils/redirectLocaleUrl.ts',
+    '!src/hooks/useSetLocale.tsx',
   ],
 
   coverageThreshold: {

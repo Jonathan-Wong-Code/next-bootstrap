@@ -1,6 +1,6 @@
 import { ThemeInterface } from './styled.d';
 
-// The Moderna Theme will be imported from the Component Library.
+// TODO: The Moderna Theme will be imported from the Component Library.
 export const modernaTheme: ThemeInterface = {
   colors: {
     primaryColor: 'red',

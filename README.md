@@ -115,6 +115,9 @@ For a sort of heirarchy of queries and when to use them.
 
 Ideally we will build and maintain container level tests from the beginning as the application grows. See `./pages/__tests__/examplePage.test.tsx` for an example of testing containers with Redux/API Calls.
 
+Unfortunately I can't put test folders inside the main pages folder so page container tests should be found at
+`./src/tests/`
+
 ## Redux
 
 This project intends to use Redux for -local- global state only. The idea is that server state should be handled by React-query and that our backend or server should always be the single source of truth for API Data.
