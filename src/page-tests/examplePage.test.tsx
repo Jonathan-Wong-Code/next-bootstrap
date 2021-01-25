@@ -1,6 +1,6 @@
 import React from 'react';
-import LocalizationPage from '../pages/examplePage';
-import { renderAllProviders } from '../src/test-helpers/testUtils';
+import LocalizationPage from '../../pages/examplePage';
+import { renderAllProviders } from '../test-helpers/testUtils';
 import axios from 'axios';
 import { waitForElementToBeRemoved, screen } from '@testing-library/react';
 
